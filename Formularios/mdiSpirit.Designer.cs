@@ -72,6 +72,7 @@
             this.optCierrePeriodos = new System.Windows.Forms.ToolStripMenuItem();
             this.optConsultarVentas = new System.Windows.Forms.ToolStripMenuItem();
             this.actualzarBaseDeDatosRNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportarVentasConComprobanteAExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optSeguridad = new System.Windows.Forms.ToolStripMenuItem();
             this.optRoles = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +97,7 @@
             this.tsslUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.exportarVentasConComprobanteAExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.entradaManualToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -395,7 +396,8 @@
             this.optCierrePeriodos,
             this.optConsultarVentas,
             this.actualzarBaseDeDatosRNCToolStripMenuItem,
-            this.exportarVentasConComprobanteAExcelToolStripMenuItem});
+            this.exportarVentasConComprobanteAExcelToolStripMenuItem,
+            this.entradaManualToolStripMenuItem1});
             this.optProcesos.Name = "optProcesos";
             this.optProcesos.Size = new System.Drawing.Size(62, 20);
             this.optProcesos.Text = "&Procesos";
@@ -466,6 +468,13 @@
             this.actualzarBaseDeDatosRNCToolStripMenuItem.Text = "Actualzar Base de Datos RNC";
             this.actualzarBaseDeDatosRNCToolStripMenuItem.Click += new System.EventHandler(this.actualzarBaseDeDatosRNCToolStripMenuItem_Click);
             // 
+            // exportarVentasConComprobanteAExcelToolStripMenuItem
+            // 
+            this.exportarVentasConComprobanteAExcelToolStripMenuItem.Name = "exportarVentasConComprobanteAExcelToolStripMenuItem";
+            this.exportarVentasConComprobanteAExcelToolStripMenuItem.Size = new System.Drawing.Size(277, 22);
+            this.exportarVentasConComprobanteAExcelToolStripMenuItem.Text = "Exportar Ventas con Comprobante a Excel";
+            this.exportarVentasConComprobanteAExcelToolStripMenuItem.Click += new System.EventHandler(this.exportarVentasConComprobanteAExcelToolStripMenuItem_Click);
+            // 
             // optSeguridad
             // 
             this.optSeguridad.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -478,7 +487,7 @@
             // 
             this.optRoles.Enabled = false;
             this.optRoles.Name = "optRoles";
-            this.optRoles.Size = new System.Drawing.Size(100, 22);
+            this.optRoles.Size = new System.Drawing.Size(152, 22);
             this.optRoles.Text = "Roles";
             this.optRoles.Click += new System.EventHandler(this.optRoles_Click);
             // 
@@ -660,12 +669,12 @@
             this.tsslVersion.Size = new System.Drawing.Size(59, 17);
             this.tsslVersion.Text = "tsslUsuario";
             // 
-            // exportarVentasConComprobanteAExcelToolStripMenuItem
+            // entradaManualToolStripMenuItem1
             // 
-            this.exportarVentasConComprobanteAExcelToolStripMenuItem.Name = "exportarVentasConComprobanteAExcelToolStripMenuItem";
-            this.exportarVentasConComprobanteAExcelToolStripMenuItem.Size = new System.Drawing.Size(277, 22);
-            this.exportarVentasConComprobanteAExcelToolStripMenuItem.Text = "Exportar Ventas con Comprobante a Excel";
-            this.exportarVentasConComprobanteAExcelToolStripMenuItem.Click += new System.EventHandler(this.exportarVentasConComprobanteAExcelToolStripMenuItem_Click);
+            this.entradaManualToolStripMenuItem1.Name = "entradaManualToolStripMenuItem1";
+            this.entradaManualToolStripMenuItem1.Size = new System.Drawing.Size(277, 22);
+            this.entradaManualToolStripMenuItem1.Text = "Entrada Manual";
+            this.entradaManualToolStripMenuItem1.Click += new System.EventHandler(this.entradaManualToolStripMenuItem1_Click);
             // 
             // mdiSpirit
             // 
@@ -762,6 +771,7 @@
         private System.Windows.Forms.ToolStripMenuItem optConsultarVentas;
         private System.Windows.Forms.ToolStripMenuItem actualzarBaseDeDatosRNCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportarVentasConComprobanteAExcelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem entradaManualToolStripMenuItem1;
     }
 }
 

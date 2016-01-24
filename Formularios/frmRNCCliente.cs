@@ -161,10 +161,13 @@ namespace spirit.Formularios
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            try
+            { 
             if(cbCodigoRNC.SelectedIndex.Equals(-1))
             {
                 MessageBox.Show("Debe seleccionar el tipo de comprobante.",this.Text);
                 return;
+                
             }
             if (cbCodigoRNC.SelectedIndex.Equals(0) || cbCodigoRNC.SelectedIndex.Equals(7) || cbCodigoRNC.SelectedIndex.Equals(8))
             {
@@ -177,21 +180,20 @@ namespace spirit.Formularios
             generarNCF();
             imprimirFactura(NCF, txtNombreRNC.Text, txtRNC.Text, lado, manguera, combustible, volumen, monto, fecha,
                                 hora);
-
-            //Reportes.CrystalReportViewer.sTipoComprobante = cbCodigoRNC.Text;
-
-            ////Aqui se envia a crystal report para acomplaro lso datos necesarios y hacer la factura mediante el Crystal.
-            //Reportes.CrystalReportViewer.sSelectionFormula = "{viewVentaComprobantes.ncf}= '" + NCF +"'";
-            //Reportes.CrystalReportViewer.sNombreReporte = "crpVentasComprobantes.rpt";
-            //Reportes.CrystalReportViewer frmCrystalReportViewer = new Reportes.CrystalReportViewer();
-            //Limpiar();
-            //frmCrystalReportViewer.Show();
+ 
 
             Reportes.crpVentasComprobantes cryRpt = new Reportes.crpVentasComprobantes();
             cryRpt.SetParameterValue("pTipoComprobante", cbCodigoRNC.Text);
-            cryRpt.RecordSelectionFormula = "{viewVentaComprobantes.ncf}= '" + NCF + "'";
-            cryRpt.PrintToPrinter(1, false, 0, 0);
+            cryRpt.SetParameterValue("ncf", NCF);
+           // cryRpt.RecordSelectionFormula = "{viewVentaComprobantes.ncf}= '"+NCF+"'";
             
+            cryRpt.PrintToPrinter(1, false, 0, 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,this.Text);
+                return;
+            }
         }
 
         //evento para que el textbox de las tarjetas solo reciba numeros

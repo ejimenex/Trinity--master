@@ -84,11 +84,7 @@ namespace spirit.Formularios
             sFechaFin = System.DateTime.DaysInMonth(Convert.ToInt32(txtAnio.Text), iMes).ToString();
             //sFechaFin = txtAnio.Text + iMes.ToString("0#") + "31";
             dsTurnos = Data.queries.npgsDataSet(Data.procedures.BuscarPeriodos(sFechaInicio,sFechaFin));
-
-            //sFechaInicio = txtAnio.Text + "-" + iMes.ToString("0#") + "-" + "01";
-            //sFechaFin = txtAnio.Text + "-" + iMes.ToString("0#") + "-" + "31";
-            //dsTurnos = Data.queries.npgsDataSet(Data.procedures.BuscarPeriodosTrinity(sFechaInicio, sFechaFin));
-
+ 
             DataTable dtTurnos = new DataTable();
             dtTurnos = dsTurnos.Tables["Tabla"];
             dgvTurnos.Rows.Clear();
@@ -96,7 +92,6 @@ namespace spirit.Formularios
             {
                 if (!string.IsNullOrEmpty(drFila["period_start_date"].ToString()))
                 {
-                    //sFechaInicio = drFila["fecha_inicio_periodo"].ToString().Substring(6, 2) + "/" + drFila["fecha_inicio_periodo"].ToString().Substring(4, 2) + "/" + drFila["fecha_inicio_periodo"].ToString().Substring(0, 4);
                     sFechaInicio = drFila["period_start_date"].ToString().Substring(6, 2) + "/" + drFila["period_start_date"].ToString().Substring(4, 2) + "/" + drFila["period_start_date"].ToString().Substring(0, 4);
                 }
                 else 
@@ -155,10 +150,7 @@ namespace spirit.Formularios
         public void Imprimir(int iIdTurno, string sFechainicio, string sHoraInicio, string sFechaFin, string sHoraFin)
         {
             int iResultado;
-                //public static ParameterField pField;
-                //public static ParameterDiscreteValue disVal;
-                //public static ParameterFields pFields;
-
+  
             Reportes.CrystalReportViewer.pFechaInicio = sFechainicio;
             Reportes.CrystalReportViewer.pHoraInicio = sHoraInicio;
             Reportes.CrystalReportViewer.pFechaFin = sFechaFin;
@@ -189,19 +181,10 @@ namespace spirit.Formularios
             DataTable dtPeriodo = new DataTable();
             dtPeriodo = dsPeriodo.Tables["Tabla"];
 
-            //iResultado = Data.queries.Execute(Data.procedures.BuscarDetallePeriodo(iIdTurno));
-            if(dtPeriodo.Rows.Count==0)
+               if(dtPeriodo.Rows.Count==0)
             { 
-                //if (sFechaFin == "")
-                //{
-                //    iResultado = Data.queries.Execute(Data.procedures.BorrarTablaDetalleTurno(iIdTurno));
-                //    iResultado = Data.queries.Execute(Data.procedures.GuardarDetallePeriodoInicio(iIdTurno, sFechainicio, sHoraInicio, sFechaFin, sHoraFin));
-                //}
-                //else
-                //{
                     iResultado = Data.queries.Execute(Data.procedures.BorrarTablaDetalleTurno(iIdTurno));
                     iResultado = Data.queries.Execute(Data.procedures.GuardarDetallePeriodo(iIdTurno, sFechainicio, sHoraInicio, sFechaFin, sHoraFin,"O"));                    
-                //}
             }
            
             iResultado = Data.queries.Execute(Data.procedures.BorrarDetallePeriodo());
@@ -216,14 +199,10 @@ namespace spirit.Formularios
                 iResultado = Data.queries.Execute(Data.procedures.DetallePeriodosFaltantes(sFechainicio, sHoraInicio, sFechaFin, sHoraFin));                                
             }
             
-           
-            //Reportes.CrystalReportViewer.sSelectionFormula = "({viewDetalleTurno.start_date}>='" + sFechainicio + "' and {viewDetalleTurno.start_time}>='" + sHoraInicio + "') and ({viewDetalleTurno.end_date}<='" + sFechaFin + "' and {viewDetalleTurno.end_time}<='" + sHoraFin + "')";
-            //Reportes.CrystalReportViewer.sNombreReporte = "crpDetalleTurno.rpt";
             Reportes.CrystalReportViewer.sNombreReporte = "crpTurnos.rpt";
             Reportes.CrystalReportViewer frmCrystalReportViewer = new Reportes.CrystalReportViewer();            
             frmCrystalReportViewer.Show();
-                      
-        }
+         }
 
         public frmReporteTurnos()
         {
@@ -257,16 +236,7 @@ namespace spirit.Formularios
                 MessageBox.Show("El turno esta incompleto.", this.Text);
                 return;
             }
-            //if (string.IsNullOrEmpty(dgvTurnos.Rows[e.RowIndex].Cells[3].Value.ToString()))
-            //{
-            //    MessageBox.Show("El turno debe estar cerrado para poder ver el detalle.", this.Text);
-            //    return;
-            //}
-            //if (string.IsNullOrEmpty(dgvTurnos.Rows[e.RowIndex].Cells[4].Value.ToString()))
-            //{
-            //    MessageBox.Show("El turno debe estar cerrado para poder ver el detalle.", this.Text);
-            //    return;
-            //}
+           
             
             Imprimir(Convert.ToInt32(dgvTurnos.Rows[e.RowIndex].Cells[0].Value.ToString()), dgvTurnos.Rows[e.RowIndex].Cells[1].Value.ToString(), dgvTurnos.Rows[e.RowIndex].Cells[2].Value.ToString(), dgvTurnos.Rows[e.RowIndex].Cells[3].Value.ToString(), dgvTurnos.Rows[e.RowIndex].Cells[4].Value.ToString());
 

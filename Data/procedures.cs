@@ -10,15 +10,15 @@ namespace spirit.Data
     {
         public static string InsertarPrepago(Int32 iCodigoPrepago, Int32 iCustId, string dtFecha, string sHora, Int32 iCantidad, string sUserId)
         {
-            string strInsert = "insert into ssf_config_prepago (codigo_prepago,tkt_cust_id,fecha,hora,cantidad,user_id)";
-            strInsert = strInsert + " values (" + iCodigoPrepago + "," + iCustId + ",'" + dtFecha + "','" + sHora + "'," + iCantidad + ",'" + sUserId + "')";
+            string strInsert = "insert into ssf_config_prepago (codigo_prepago,tkt_cust_id,fecha,hora,cantidad,user_id)"
+                            + " values (" + iCodigoPrepago + "," + iCustId + ",'" + dtFecha + "','" + sHora + "'," + iCantidad + ",'" + sUserId + "')";
             return strInsert;
         }
 
         public static string InsertarPrepagoDetalle(Int32 iCodigoPrepago, string sCodigoBarra, Int32 fConsumido, double fMonto, string sFecha, string sHora, string sUserId)
         {
-            string strInsert = "insert into ssf_config_prepago_detalle (codigo_prepago,codigo_barra,consumido,monto,fecha,hora,user_id)";
-            strInsert = strInsert + " values (" + iCodigoPrepago + ",'" + sCodigoBarra + "'," + fConsumido + ",'" + fMonto + "','" + sFecha + "','" + sHora + "','" + sUserId + "')";
+            string strInsert = "insert into ssf_config_prepago_detalle (codigo_prepago,codigo_barra,consumido,monto,fecha,hora,user_id)"
+                            + " values (" + iCodigoPrepago + ",'" + sCodigoBarra + "'," + fConsumido + ",'" + fMonto + "','" + sFecha + "','" + sHora + "','" + sUserId + "')";
             return strInsert;
         }
 
@@ -54,16 +54,16 @@ namespace spirit.Data
 
         public static string CargarMenusUsuario(string sIdUsuario)
         {
-            string sQueryRolUsuario = "Select sm.desc_menu from ssf_rol_usuario sru,ssf_rol_acceso sra,ssf_usuario su,ssf_menu sm";
-            sQueryRolUsuario = sQueryRolUsuario + " where sra.id_menu=sm.id_menu and sru.id_rol=sra.id_rol and su.id_usuario=sru.id_usuario and su.id_usuario='" + sIdUsuario + "'";
+            string sQueryRolUsuario = "Select sm.desc_menu from ssf_rol_usuario sru,ssf_rol_acceso sra,ssf_usuario su,ssf_menu sm"
+                                    + " where sra.id_menu=sm.id_menu and sru.id_rol=sra.id_rol and su.id_usuario=sru.id_usuario and su.id_usuario='" + sIdUsuario + "'";
             return sQueryRolUsuario;
         }
 
         public static string CargarDatosTicketPrepago(string sCodigoBarra)
         {
             string sQueryDatosTPrepago = "select cpd.codigo_barra,cpd.monto,cpd.consumido,cp.tkt_cust_id,tc.tkt_cust_name"
-                 + " from ssf_config_prepago_detalle cpd,ssf_config_prepago cp,ssf_tkt_customers tc"
-                 + " where cpd.codigo_prepago=cp.codigo_prepago and cp.tkt_cust_id=tc.tkt_cust_id and cpd.codigo_barra='" + sCodigoBarra + "'";
+                                     + " from ssf_config_prepago_detalle cpd,ssf_config_prepago cp,ssf_tkt_customers tc"
+                                     + " where cpd.codigo_prepago=cp.codigo_prepago and cp.tkt_cust_id=tc.tkt_cust_id and cpd.codigo_barra='" + sCodigoBarra + "'";
             return sQueryDatosTPrepago;
         }
 
@@ -84,11 +84,11 @@ namespace spirit.Data
             {
                 sWhere = sWhere + " and sps.hose_id=" + iHose_Id;
             }
-            string strCargarVentas = "select sps.sale_id,sps.pump_id,sps.hose_id,sps.grade_id,stp.tkt_plu_short_desc,sps.volume,sps.money,";
-            strCargarVentas = strCargarVentas + " substring(sps.end_date from 7 for 2) || '/' || substring(sps.end_date from 5 for 2) || '/' || substring(sps.end_date from 1 for 4) as end_date,";
-            strCargarVentas = strCargarVentas + " substring(sps.end_time from 1 for 2) || ':' || substring(sps.end_time from 3 for 2) || ':'  || substring(sps.end_time from 5 for 2) as end_time";
-            strCargarVentas = strCargarVentas + " from ssf_pump_sales sps,ssf_tkt_plu stp,ssf_tkt_plu_grades stpg where sps.grade_id=stpg.tkt_grade_id and stpg.tkt_plu_id=stp.tkt_plu_id " + sWhere;
-            strCargarVentas = strCargarVentas + " order by (start_date || ' ' || start_time) desc";
+            string strCargarVentas = "select sps.sale_id,sps.pump_id,sps.hose_id,sps.grade_id,stp.tkt_plu_short_desc,sps.volume,sps.money,"
+                                    + " substring(sps.end_date from 7 for 2) || '/' || substring(sps.end_date from 5 for 2) || '/' || substring(sps.end_date from 1 for 4) as end_date,"
+                                    + " substring(sps.end_time from 1 for 2) || ':' || substring(sps.end_time from 3 for 2) || ':'  || substring(sps.end_time from 5 for 2) as end_time"
+                                    + " from ssf_pump_sales sps,ssf_tkt_plu stp,ssf_tkt_plu_grades stpg where sps.grade_id=stpg.tkt_grade_id and stpg.tkt_plu_id=stp.tkt_plu_id " + sWhere
+                                    + " order by (start_date || ' ' || start_time) desc";
             return strCargarVentas;
         }
 
@@ -96,6 +96,12 @@ namespace spirit.Data
         {
             string strCargarDatosTLS = "select tls_id,productheight,waterheight,temperature,productvolume,watervolume,productullage,producttcvolume,productdensity,productmass from ssf_tls where fecha='" + sFecha + "'";
             return strCargarDatosTLS;
+        }
+
+        public static string BuscarDatosEntradaManualPorTurno(int turno)
+        {
+            string strEntradaManual = "select tkt_plu_long_desc as producto, '' as Galones, '' as Altura from ssf_reporte_turno ";
+            return strEntradaManual; 
         }
 
         public static string BuscarConfigListadoVenta(string sIdusuario)
@@ -208,136 +214,112 @@ namespace spirit.Data
 
         public static string BuscarPeriodos(string sFechaInicio, string sFechaFin)
         {            
-            string sQueryPeriodos = "select sd.period_id,sd.period_start_date,sd.period_start_time,sd.period_end_date,sd.period_end_time from ssf_addin_shifts_data sd";
-            sQueryPeriodos = sQueryPeriodos + " where sd.period_type='S' and sd.period_start_date>='" + sFechaInicio + "' and sd.period_start_date<='" + sFechaFin + "' order by sd.period_id desc";
+            string sQueryPeriodos = "select sd.period_id,sd.period_start_date,sd.period_start_time,sd.period_end_date,sd.period_end_time from ssf_addin_shifts_data sd"
+                                 + " where sd.period_type='S' and sd.period_start_date>='" + sFechaInicio + "' and sd.period_start_date<='" + sFechaFin + "' order by sd.period_id desc";
             return sQueryPeriodos;
         }
         public static string BuscarPeriodosTrinity(string sFechaInicio, string sFechaFin)
         {
-            string sQueryPeriodos = "select sp.id_periodo,min(sp.fecha_inicio_periodo || ' ' || sp.hora_inicio_periodo) as fecha_inicio_periodo,";
-            sQueryPeriodos = sQueryPeriodos + " max(sp.fecha_fin_periodo || ' ' || sp.hora_fin_periodo) as fecha_fin_periodo from ssf_periodo sp";
-            sQueryPeriodos = sQueryPeriodos + " where sp.fecha_inicio_periodo>='" + sFechaInicio + "' and sp.fecha_inicio_periodo<='" + sFechaFin + "' group by sp.id_periodo";
-            //string sQueryPeriodos = "select p.id_periodo,p.lado,p.fecha_inicio_periodo,p.hora_inicio_periodo,p.fecha_fin_periodo,p.hora_fin_periodo from ssf_periodo p";
-            //sQueryPeriodos = sQueryPeriodos + " where p.fecha_inicio_periodo>='" + sFechaInicio + "' and p.fecha_inicio_periodo<='" + sFechaFin + "' order by p.id_periodo desc";
+            string sQueryPeriodos = "select sp.id_periodo,min(sp.fecha_inicio_periodo || ' ' || sp.hora_inicio_periodo) as fecha_inicio_periodo,"
+                                + " max(sp.fecha_fin_periodo || ' ' || sp.hora_fin_periodo) as fecha_fin_periodo from ssf_periodo sp"
+                                + " where sp.fecha_inicio_periodo>='" + sFechaInicio + "' and sp.fecha_inicio_periodo<='" + sFechaFin + "' group by sp.id_periodo";
             return sQueryPeriodos;
         }
 
         public static string DetallePeriodos(int iIdTurno, string sFechaInicio, string sHoraInicio, string sFechaFin, string sHoraFin)
         {
-            //string sQueryDetallePeriodos = "create or REPLACE VIEW viewDetalleTurno AS";
-            string sQueryDetallePeriodos = "insert into ssf_reporte_turno";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " min(initial_volume) as initial_volume,max(final_volume) as final_volume,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " min(start_date) as start_date, min(start_time) as start_time, max(end_date) as end_date, max(end_time) as end_time";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " ,(select sum(precio) from ssf_detalle_turno where lado=sps.pump_id and manguera=sps.hose_id and codigo_producto=sps.grade_id and id_turno=" + iIdTurno;
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " group by lado,manguera,codigo_producto,id_turno) as ppu,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select id_relacion from ssf_relacion_bombas where pump_id=sps.pump_id) as id_relacion,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "' and (end_date || ' ' || end_time)<='" + sFechaFin + " " + sHoraFin + "'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
+            string sQueryDetallePeriodos = "insert into ssf_reporte_turno"
+                                         + " select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,"
+                                         + " min(initial_volume) as initial_volume,max(final_volume) as final_volume,"
+                                         + " min(start_date) as start_date, min(start_time) as start_time, max(end_date) as end_date, max(end_time) as end_time"
+                                         + " ,(select sum(precio) from ssf_detalle_turno where lado=sps.pump_id and manguera=sps.hose_id and codigo_producto=sps.grade_id and id_turno=" + iIdTurno
+                                         + " group by lado,manguera,codigo_producto,id_turno) as ppu,"
+                                         + " (select id_relacion from ssf_relacion_bombas where pump_id=sps.pump_id) as id_relacion,"
+                                         + " (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia"
+                                         + " from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id"
+                                         + " and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "' and (end_date || ' ' || end_time)<='" + sFechaFin + " " + sHoraFin + "'"
+                                         + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
             
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " (select volumen_inicial from ssf_periodo where id_periodo=" + iIdTurno + " and lado=sps.pump_id) as initial_volume,";
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " (select volumen_final from ssf_periodo where id_periodo=" + iIdTurno + " and lado=sps.pump_id) as final_volume,";
-
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,min(initial_volume) as initial_volume,max(final_volume) as final_volume,";
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " min(start_date) as start_date, min(start_time) as start_time, max(end_date) as end_date, max(end_time) as end_time";
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id";
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " and (start_date>='" + sFechaInicio + "' and start_time>='" + sHoraInicio + "') and (end_date<='" + sFechaFin + "' and end_time<='" + sHoraFin + "')";
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
             return sQueryDetallePeriodos;
         }
 
         public static string DetallePeriodosInicio(int iIdTurno, string sFechaInicio, string sHoraInicio)
-        {
-            //string sQueryDetallePeriodos = "create or REPLACE VIEW viewDetalleTurno AS";
-            string sQueryDetallePeriodos = "insert into ssf_reporte_turno";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " min(initial_volume) as initial_volume,max(final_volume) as final_volume,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " min(start_date) as start_date, min(start_time) as start_time, max(end_date) as end_date, max(end_time) as end_time";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " ,(select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date>='" + sFechaInicio + "') as ppu,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select id_relacion from ssf_relacion_bombas where pump_id=sps.pump_id) as id_relacion,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
-
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " ,(select ppu from ssf_grade_prices where level=1 and grade_id=sps.grade_id) as ppu,";
-
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,min(initial_volume) as initial_volume,max(final_volume) as final_volume,";
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " min(start_date) as start_date, min(start_time) as start_time, max(end_date) as end_date, max(end_time) as end_time";
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id";
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " and (start_date>='" + sFechaInicio + "' and start_time>='" + sHoraInicio + "') and (end_date<='" + sFechaFin + "' and end_time<='" + sHoraFin + "')";
-            //sQueryDetallePeriodos = sQueryDetallePeriodos + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
+        {            
+            string sQueryDetallePeriodos = "insert into ssf_reporte_turno"
+                                        + " select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,"
+                                        + " min(initial_volume) as initial_volume,max(final_volume) as final_volume,"
+                                        + " min(start_date) as start_date, min(start_time) as start_time, max(end_date) as end_date, max(end_time) as end_time"
+                                        + " ,(select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd"
+                                        + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date>='" + sFechaInicio + "') as ppu,"
+                                        + " (select id_relacion from ssf_relacion_bombas where pump_id=sps.pump_id) as id_relacion,"
+                                        + " (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia"
+                                        + " from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id"
+                                        + " and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "'"
+                                        +" group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";            
             return sQueryDetallePeriodos;
         }
 
         public static string DetallePeriodosFaltantes(string sFechaInicio, string sHoraInicio, string sFechaFin, string sHoraFin)
         {
-            string sQueryDetallePeriodos = "insert into ssf_reporte_turno select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,max(final_volume) as initial_volume,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " max(final_volume) as final_volume, max(start_date) as start_date, max(start_time) as start_time, max(end_date) as end_date,"; 
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " max(end_time) as end_time ,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date>='" + sFechaInicio + "') as ppu,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select id_relacion from ssf_relacion_bombas where pump_id=sps.pump_id) as id_relacion, (select secuencia ";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia from ssf_pump_sales sps, ssf_tkt_plu stp ";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " where sps.grade_id=stp.tkt_plu_id  and (end_date || ' ' || end_time) <='" + sFechaInicio + " " + sHoraInicio + "'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " and (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) not in";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " ( select  (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia from ssf_pump_sales sps, ssf_tkt_plu stp ";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " where sps.grade_id=stp.tkt_plu_id  and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "' and (end_date || ' ' || end_time)<='" + sFechaFin + " " + sHoraFin + "'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " ) group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
-            return sQueryDetallePeriodos;
-
-            //(select ppu from ssf_grade_prices where level=1 and grade_id=sps.grade_id) as ppu, ";
+            string sQueryDetallePeriodos = "insert into ssf_reporte_turno select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,max(final_volume) as initial_volume,"
+                                        + " max(final_volume) as final_volume, max(start_date) as start_date, max(start_time) as start_time, max(end_date) as end_date,"
+                                        + " max(end_time) as end_time ,"
+                                        + " (select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd"
+                                        + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date>='" + sFechaInicio + "') as ppu,"
+                                        + " (select id_relacion from ssf_relacion_bombas where pump_id=sps.pump_id) as id_relacion, (select secuencia "
+                                        + " from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia from ssf_pump_sales sps, ssf_tkt_plu stp "
+                                        + " where sps.grade_id=stp.tkt_plu_id  and (end_date || ' ' || end_time) <='" + sFechaInicio + " " + sHoraInicio + "'"
+                                        + " and (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) not in"
+                                        + " ( select  (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia from ssf_pump_sales sps, ssf_tkt_plu stp "
+                                        + " where sps.grade_id=stp.tkt_plu_id  and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "' and (end_date || ' ' || end_time)<='" + sFechaFin + " " + sHoraFin + "'"
+                                        + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id"
+                                        + " ) group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
+            return sQueryDetallePeriodos;            
         }
 
         public static string DetallePeriodosFaltantesInicio(string sFechaInicio, string sHoraInicio)
         {
-            string sQueryDetallePeriodos = "insert into ssf_reporte_turno select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,max(final_volume) as initial_volume,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " max(final_volume) as final_volume, max(start_date) as start_date, max(start_time) as start_time, max(end_date) as end_date,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " max(end_time) as end_time ,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date>='" + sFechaInicio + "') as ppu,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select id_relacion from ssf_relacion_bombas where pump_id=sps.pump_id) as id_relacion, (select secuencia ";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia from ssf_pump_sales sps, ssf_tkt_plu stp ";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " where sps.grade_id=stp.tkt_plu_id  and (end_date || ' ' || end_time) <='" + sFechaInicio + " " + sHoraInicio + "'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " and (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) not in";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " ( select  (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia from ssf_pump_sales sps, ssf_tkt_plu stp ";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " where sps.grade_id=stp.tkt_plu_id  and (start_date || ' ' || start_time) <='" + sFechaInicio + " " + sHoraInicio + "'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " ) group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
-            return sQueryDetallePeriodos;
-
-            //(select ppu from ssf_grade_prices where level=1 and grade_id=sps.grade_id) as ppu, ";
+            string sQueryDetallePeriodos = "insert into ssf_reporte_turno select pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,max(final_volume) as initial_volume,"
+                                        + " max(final_volume) as final_volume, max(start_date) as start_date, max(start_time) as start_time, max(end_date) as end_date,"
+                                        + " max(end_time) as end_time ,"
+                                        + " (select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd"
+                                        + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date>='" + sFechaInicio + "') as ppu,"
+                                        + " (select id_relacion from ssf_relacion_bombas where pump_id=sps.pump_id) as id_relacion, (select secuencia "
+                                        + " from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia from ssf_pump_sales sps, ssf_tkt_plu stp "
+                                        + " where sps.grade_id=stp.tkt_plu_id  and (end_date || ' ' || end_time) <='" + sFechaInicio + " " + sHoraInicio + "'"
+                                        + " and (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) not in"
+                                        + " ( select  (select secuencia from ssf_lado_manguera where pump_id=sps.pump_id and hose_id=sps.hose_id) as secuencia from ssf_pump_sales sps, ssf_tkt_plu stp "
+                                        + " where sps.grade_id=stp.tkt_plu_id  and (start_date || ' ' || start_time) <='" + sFechaInicio + " " + sHoraInicio + "'"
+                                        + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id"
+                                        + " ) group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc order by pump_id,hose_id,grade_id";
+            return sQueryDetallePeriodos;            
         }
 
         public static string GuardarDetallePeriodo(int iIdTurno, string sFechaInicio, string sHoraInicio, string sFechaFin, string sHoraFin,string sEstado)
         {
-            string sQueryDetallePeriodos = "insert into ssf_detalle_turno (id_turno,fecha_inicio_turno,hora_inicio_turno,fecha_fin_turno,hora_fin_turno,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " lado,manguera,codigo_producto,desc_producto,volumen_inicial,volumen_final,precio,estado)";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " select " + iIdTurno + ",'" + sFechaInicio + "','" + sHoraInicio + "','" + sFechaFin + "','" + sHoraFin + "',";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,min(initial_volume) as initial_volume,max(final_volume) as final_volume,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date between '" + sFechaInicio + "' and '" + sFechaFin + "') as ppu,'";            
-            sQueryDetallePeriodos = sQueryDetallePeriodos + sEstado + "' from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "' and (end_date || ' ' || end_time)<='" + sFechaFin + " " + sHoraFin + "'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,sps.ppu order by pump_id,hose_id,grade_id";
+            string sQueryDetallePeriodos = "insert into ssf_detalle_turno (id_turno,fecha_inicio_turno,hora_inicio_turno,fecha_fin_turno,hora_fin_turno,"
+                                        + " lado,manguera,codigo_producto,desc_producto,volumen_inicial,volumen_final,precio,estado)"
+                                        + " select " + iIdTurno + ",'" + sFechaInicio + "','" + sHoraInicio + "','" + sFechaFin + "','" + sHoraFin + "',"
+                                        + " pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,min(initial_volume) as initial_volume,max(final_volume) as final_volume,"
+                                        + " (select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd"
+                                        + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date between '" + sFechaInicio + "' and '" + sFechaFin + "') as ppu,'"
+                                        + sEstado + "' from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id"
+                                        + " and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "' and (end_date || ' ' || end_time)<='" + sFechaFin + " " + sHoraFin + "'"
+                                        + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,sps.ppu order by pump_id,hose_id,grade_id";
             return sQueryDetallePeriodos;
         }
 
         public static string GuardarDetallePeriodoInicio(int iIdTurno, string sFechaInicio, string sHoraInicio, string sFechaFin, string sHoraFin, string sEstado)
         {
-            string sQueryDetallePeriodos = "insert into ssf_detalle_turno (id_turno,fecha_inicio_turno,hora_inicio_turno,fecha_fin_turno,hora_fin_turno,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " lado,manguera,codigo_producto,desc_producto,volumen_inicial,volumen_final,precio,estado)";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " select " + iIdTurno + ",'" + sFechaInicio + "','" + sHoraInicio + "','" + sFechaFin + "','" + sHoraFin + "',";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,min(initial_volume) as initial_volume,max(final_volume) as final_volume,";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " (select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date between '" + sFechaInicio + "' and '" + sFechaFin + "') as ppu,'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + sEstado + "' from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,sps.ppu order by pump_id,hose_id,grade_id";
+            string sQueryDetallePeriodos = "insert into ssf_detalle_turno (id_turno,fecha_inicio_turno,hora_inicio_turno,fecha_fin_turno,hora_fin_turno,"
+                                        + " lado,manguera,codigo_producto,desc_producto,volumen_inicial,volumen_final,precio,estado)"
+                                        + " select " + iIdTurno + ",'" + sFechaInicio + "','" + sHoraInicio + "','" + sFechaFin + "','" + sHoraFin + "',"
+                                        + " pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,min(initial_volume) as initial_volume,max(final_volume) as final_volume,"
+                                        + " (select sapcd.ppu from ssf_addin_prices_change sapc,ssf_addin_prices_change_detail sapcd"
+                                        + " where sapc.price_change_id=sapcd.price_change_id and sapcd.grade_id=sps.grade_id and sapcd.price_level=1 and sapc.processed_date between '" + sFechaInicio + "' and '" + sFechaFin + "') as ppu,'"
+                                        + sEstado + "' from ssf_pump_sales sps, ssf_tkt_plu stp where sps.grade_id=stp.tkt_plu_id"
+                                        + " and (start_date || ' ' || start_time) >='" + sFechaInicio + " " + sHoraInicio + "'"
+                                        + " group by pump_id,hose_id,grade_id,stp.tkt_plu_long_desc,sps.ppu order by pump_id,hose_id,grade_id";
             return sQueryDetallePeriodos;
         }
 
@@ -361,8 +343,8 @@ namespace spirit.Data
 
         public static string BuscarStatusPeriodo(int iIdTurno)
         {
-            string sQueryDetallePeriodos = "select sasd.period_status from ssf_addin_shifts_data sasd,ssf_detalle_turno sdt where sasd.period_id=" + iIdTurno + " and sasd.period_type='S' and sasd.period_status='C'";
-            sQueryDetallePeriodos = sQueryDetallePeriodos + " and sdt.id_turno=sasd.period_id and sdt.estado='O'";
+            string sQueryDetallePeriodos = "select sasd.period_status from ssf_addin_shifts_data sasd,ssf_detalle_turno sdt where sasd.period_id=" + iIdTurno + " and sasd.period_type='S' and sasd.period_status='C'"
+                                         + " and sdt.id_turno=sasd.period_id and sdt.estado='O'";
             return sQueryDetallePeriodos;
         }
 
@@ -428,6 +410,27 @@ namespace spirit.Data
             string sQueryBuscarRNC = "select RNC,nombre,nombre_comercial from ssf_rnc where RNC = '"+rnc+"'";
             return sQueryBuscarRNC;
         }
+
+        public static string Buscarssf_addin_shifts_dataPorPeriodo(int id)
+        {
+            string consulta = "select * from ssf_addin_shifts_data where period_id = "+id;
+            return consulta;
+        }
+
+        public static string InsertarDetalle_entrada_manual(int turnoId,decimal galones,decimal altura,int tipoCombustible,string descripcion)
+        {
+            string consulta = "insert into ssf_detalle_entrada_manual(turno_id,galones,altura,tipo_compustible_id,tipo_combustible_descripcion)"
+                                + "values("+turnoId+"," + galones +","+altura+ "," + tipoCombustible + ",'" + descripcion + "')";
+            return consulta;
+ 
+        }
+
+        public static string Cargar_ssf_tkt_plu()
+        {
+
+            string consulta = "select * from ssf_tkt_plu";
+            return consulta;
+        }
         
         //Query para insertar un historial de los diferentes ncf que se registren y sus aumentos.
         public static string insertarNCFcopia(string sPrefijo, string sDescripcion, Int32 iDesde, Int32 iHasta, string sIdUsuario, string sFecha, string sHora, Int32 iConsecutivo, string codigo_tipo)
@@ -474,50 +477,24 @@ namespace spirit.Data
             string sQueryUpdate = "update ssf_datos_cliente set tipo_comprobante='" + sTipoComprobante + "'";
             return sQueryUpdate;
         }
+   
+        public static string GuardarEntradaManual(int id_ssf_reporte_turno,decimal monto_efectivo,decimal monto_tarjeta
+            , decimal monto_prepago, decimal monto_credito)
+        {
+            return "insert into ssf_turnos_desglose(ssf_addin_shifts_data_periodo_id, monto_efectivo, monto_tarjeta,monto_prepago, monto_credito)"
+                                           +"values("+id_ssf_reporte_turno+","+monto_efectivo+","+monto_tarjeta+","+monto_prepago+","+monto_credito+")";
+        }
 
-        //public static string CargarTurnoAbierto()
-        //{
-        //    string sQueryTurnoAbierto = "select * from ssf_periodo where status_periodo=1 order by id_periodo,lado,manguera";
-        //    return sQueryTurnoAbierto;
-        //}
-        //public static string CargarTurnosCerrados()
-        //{
-        //    string sQueryTurnosCerrados = "select * from ssf_periodo where status_periodo=0 order by id_periodo,lado,manguera";
-        //    return sQueryTurnosCerrados;
-        //}
-        //public static string CerrarPeriodo(int iIdPeriodo,int iLado,int iStatusPeriodo,string sFechaFinPeriodo,string sHoraFinPeriodo,double dVolumenFinal,string sUsuario, int iManguera)
-        //{
-        //    string sQueryCerrarPeriodo = "update ssf_periodo set status_periodo=" + iStatusPeriodo + ",fecha_fin_periodo='" + sFechaFinPeriodo + "',hora_fin_periodo='" + sHoraFinPeriodo + "',volumen_final=" + dVolumenFinal + ",id_usuario='" + sUsuario + "' where id_periodo=" + iIdPeriodo + " and lado=" + iLado + " and manguera=" + iManguera;            
-        //    return sQueryCerrarPeriodo;
-        //}
+        public static string EliminarDetalleEntradaManualPorTurnoId(int periodoId)
+        {
+            return "delete from ssf_detalle_entrada_manual where turno_id = "+periodoId;
+        }
 
-        //public static string AbrirPeriodo(int iIdPeriodo, int iStatusPeriodo, string sFechaInicioPeriodo, string sHoraInicioPeriodo, int iLado, double fVolumenInicial, string sUsuario, int iManguera)
-        //{
-        //    string sQueryCerrarPeriodo = "insert into ssf_periodo (id_periodo,status_periodo,fecha_inicio_periodo,hora_inicio_periodo,lado,volumen_inicial,id_usuario,manguera)";
-        //    sQueryCerrarPeriodo = sQueryCerrarPeriodo + " values (" + iIdPeriodo + "," + iStatusPeriodo + ",'" + sFechaInicioPeriodo + "','" + sHoraInicioPeriodo + "'," + iLado + "," + fVolumenInicial + ",'" + sUsuario + "'," + iManguera + ")";
+        public static string EliminarDesgloseEntradaManualPorTurnoId(int turnoId)
+        {
+            return "delete from ssf_turnos_desglose where ssf_addin_shifts_data_periodo_id = "+turnoId;
+        }
+         
 
-        //    return sQueryCerrarPeriodo;
-        //}
-
-        //public static string Borrarperiodo(int iIdPeriodo,int iLado)
-        //{
-        //    string sQueryDetallePeriodos = "delete from ssf_periodo where id_perido=" + iIdPeriodo + " and lado=" + iLado;
-        //    return sQueryDetallePeriodos;
-        //}
-        //public static string MaxPeriodo(int iLado)
-        //{
-        //    string sQueryMaxPeriodo = "Select max(id_periodo) as id_periodo,max(fecha_fin_periodo) as fecha_fin_periodo,max(hora_fin_periodo) as hora_fin_periodo from ssf_periodo where lado=" + iLado;
-        //    return sQueryMaxPeriodo;
-        //}
-        //public static string BuscarVolumenInicial(int iLado,int iManguera)
-        //{
-        //    string sQueryVolInicial = "Select max(volumen_final) as volumen_inicial from ssf_periodo where lado=" + iLado + " and manguera=" + iManguera;
-        //    return sQueryVolInicial;
-        //}
-        //public static string BuscarVolumenFinal(int iLado, int iManguera)
-        //{
-        //    string sQueryMaxPeriodo = "Select max(attr_value) as attr_value from ssf_device_data where attr_name='VolumeTotalizer' and device_id=" + iLado + " and manguera=" + iManguera;
-        //    return sQueryMaxPeriodo;
-        //}
     }
 }

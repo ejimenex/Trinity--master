@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>41</ApplicationRevision>
+    <ApplicationRevision>56</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -95,6 +95,8 @@
       <HintPath>itextsharp-all-5.5.8\itextsharp.xtra.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Npgsql">
       <HintPath>..\..\..\..\Program Files\PostgreSQL\8.1\Npgsql\MS1.1\Npgsql.dll</HintPath>
     </Reference>
@@ -135,6 +137,12 @@
     </Compile>
     <Compile Include="Formularios\frmCargarRNC.Designer.cs">
       <DependentUpon>frmCargarRNC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmEntradasManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmEntradasManual.Designer.cs">
+      <DependentUpon>frmEntradasManual.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\frmRNCCliente.cs">
       <SubType>Form</SubType>
@@ -260,7 +268,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>crpTurnosSuma.rpt</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\crpVentasComprobantes.cs">
+    <Compile Include="Reportes\crpVentasComprobantes1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>crpVentasComprobantes.rpt</DependentUpon>
@@ -277,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmCargarRNC.resx">
       <DependentUpon>frmCargarRNC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmEntradasManual.resx">
+      <DependentUpon>frmEntradasManual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmRNCCliente.resx">
       <DependentUpon>frmRNCCliente.cs</DependentUpon>
@@ -355,7 +366,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\crpVentasComprobantes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>crpVentasComprobantes.cs</LastGenOutput>
+      <LastGenOutput>crpVentasComprobantes1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\CrystalReportViewer.resx">
       <DependentUpon>CrystalReportViewer.cs</DependentUpon>

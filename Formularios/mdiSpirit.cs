@@ -331,6 +331,13 @@ namespace spirit.Formularios
         private void exportarVentasConComprobanteAExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             exportarExcel();
+        }
+
+        private void entradaManualToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sFormulario = "frmEntradaManual";
+            frmEntradasManual entradaManual = new frmEntradasManual();
+            entradaManual.Show();
         }        
     }
 }
